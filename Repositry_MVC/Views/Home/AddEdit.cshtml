@@ -1,0 +1,267 @@
+﻿@model Repository.Core.CommonModel
+
+@{
+    ViewBag.Title = "AddEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+
+        <!--begin::Portlet-->
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            Employee Deatils
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <!--begin::Form-->
+            @using (Html.BeginForm("", "", new { @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed", @enctype = "multipart/form-data" }))
+            {
+                <div class="m-portlet__body">
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <label>Full Name:</label>
+                            @Html.TextBoxFor(m => m.EmployeeModel.Name, new { @class = "form-control m-input", @placeholder = "Enter full name" })
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="">Email:</label>
+                            @Html.TextBoxFor(m => m.EmployeeModel.EmailId, new { @class = "form-control m-input", @placeholder = "Enter email", @type = "Email" })
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="">Gender:</label>
+                            <div class="m-radio-inline">
+                                <label class="m-radio m-radio--solid">
+                                    @Html.RadioButtonFor(m => m.EmployeeModel.Gender, "Male", new { Checked = "checked", @id = "Gender" }) Male
+                                    <span></span>
+                                </label>
+                                <label class="m-radio m-radio--solid">
+                                    @Html.RadioButtonFor(m => m.EmployeeModel.Gender, "Female", new { @id = "Gender" }) Fenale
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <label class="">Department:</label>
+                            <div class="m-input-icon m-input-icon--right">
+                                @Html.DropDownListFor(m => m.EmployeeModel.DeptName, ViewBag.Department as SelectList, "Select Department", new { @class = "form-control m-input"@*, id = "ddCountry"*@})
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="">Designation:</label>
+                            @Html.TextBoxFor(m => m.EmployeeModel.Designation, new { @class = "form-control m-input", @placeholder = "Enter Designation" })
+
+                        </div>
+                        <div class="custom-file col-lg-4">
+                            <label>&nbsp;&nbsp;&nbsp;</label>
+                            <div class="m-input-icon m-input-icon--right">
+                                @Html.TextBoxFor(m => m.EmployeeModel.Image , new { @class = "custom-file-input", @type = "file" })
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <label class="">Date of Birth:</label>
+                            <div class="m-input-icon m-input-icon--right">
+                                @Html.TextBoxFor(m => m.EmployeeModel.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control m-input", @type = "date", @style = "padding-right: 0.8rem;" })
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="">Mobile Number:</label>
+                            <div class="m-input-icon m-input-icon--right">
+                                @Html.TextBoxFor(m => m.EmployeeModel.MoNumber, new { @class = "form-control m-input" })
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="">Active:</label>
+                            <div class="m-checkbox-inline">
+                                <label class="m-switch m-switch--icon">
+                                    @Html.CheckBoxFor(m => m.EmployeeModel.IsActive, new { @class = "form-control m-input" })
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-10">
+                            <label class="">Current Address:</label>
+                            <div class="m-input-icon m-input-icon--right">
+                                @Html.TextAreaFor(m => m.AddressModel.Address1, new { @class = "form-control m-input", @id = "ad1" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-form__group form-group row">
+                        <div class="col-3">
+                            <div class="m-checkbox-inline">
+                                <label class="m-switch m-switch--icon">
+                                    <input type="checkbox" id="chkAddress"> Address Same as Above.?
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-10">
+                            <label class="">Main Address:</label>
+                            <div class="m-input-icon m-input-icon--right">
+                                @Html.TextAreaFor(m => m.AddressModel.Address2, new { @class = "form-control m-input", @id = "ad2" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <label class="">Country:</label>
+                            <div class="m-input-icon m-input-icon--right">
+                                @Html.DropDownListFor(m => m.AddressModel.Country, ViewBag.Country as SelectList, "Select country", new { @class = "form-control m-input", id = "ddCountry" })
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="">State:</label>
+                            <div class="m-input-icon m-input-icon--right">
+                                @Html.DropDownListFor(m => m.AddressModel.State, new SelectList(Enumerable.Empty<SelectListItem>()), "Select State", new { @class = "form-control m-input", id = "ddState" })
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="">City:</label>
+                            <div class="m-input-icon m-input-icon--right">
+                                @Html.DropDownListFor(m => m.AddressModel.City, new SelectList(Enumerable.Empty<SelectListItem>()), "Select City", new { @class = "form-control m-input", id = "ddCity" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <label class="">Hobby</label>
+                            <div class="m-input-icon m-input-icon--right">
+                                @Html.DropDownListFor(m => m.EmployeeModel.Hobby, ViewBag.Hobby as SelectList, "", new { @class = "form-control m-select2 ", id = "ddHobby" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                        <div class="m-form__actions m-form__actions--solid">
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    <button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
+                                    <button type="reset" class="btn btn-secondary">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!--end::Form-->
+        </div>
+
+        <!--end::Portlet-->
+
+    </div>
+</div>
+
+
+@section scripts
+{
+
+    <script>
+        $(document).ready(function () {
+            @*var model = @Html.Raw(Json.Encode(@ViewBag.Hobby));*@
+
+
+            $("#chkAddress").change(function () {
+                Address();
+            });
+
+            $("#ddCountry").change(function () {
+                CountryChange();
+            });
+
+            $("#ddState").change(function () {
+                StateChange();
+            });
+
+
+
+            $('#ddHobby').select2({
+                placeholder: 'Select Hobby',
+                allowClear: true,
+                multiple: true,
+             });
+
+            $("#btnSubmit").click(function () {
+                Save();
+            });
+
+        });
+
+        function Address() {
+            var checked = $("#chkAddress").is(":checked");
+            if (checked) {
+                $('#ad2').attr("disabled", true);
+                $("#ad2").val($("#ad1").val());
+            }
+            else {
+                $('#ad2').attr("disabled", false);
+                $("#ad2").val('');
+            }
+        }
+
+        function CountryChange() {
+            var Cnid = $(this).val();
+            $("#ddState").empty();
+            $("#ddCity").empty();
+            $.ajax({
+                url: '/Home/GetState',
+                type: 'GET',
+                datatype: 'JSON',
+                data: { CountryId: Cnid },
+                success: function (result) {
+                    $('#ddState').append($('<option>Select State</option>'));
+                    $.each(result, function (i, item) {
+                        $('#ddState').append($('<option></option>').val(item.StateId).html(item.Name));
+                    });
+                }
+            });
+        }
+
+        function StateChange() {
+            var Stid = $(this).val();
+            $("#ddCity").empty();
+            $.ajax({
+                url: '/Home/GetCity',
+                type: 'GET',
+                datatype: 'JSON',
+                data: { StateId: Stid },
+                success: function (result) {
+                    $('#ddCity').append($('<option>Select City</option>'));
+                    $.each(result, function (i, item) {
+                        $('#ddCity').append($('<option></option>').val(item.CityId).html(item.Name));
+                    });
+                }
+            });
+        }
+
+        function Save() {
+            debugger;
+            var Gender;
+            if ($("#Gender").prop("checked")) {
+                Gender = "Male";
+            }
+            else {
+                Gender = "Female";
+            }
+        }
+    </script>
+
+
+} 
